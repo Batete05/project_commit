@@ -3,7 +3,7 @@ import time
 from datetime import datetime, timedelta
 from random import randint
 
-start_date = datetime.now() - timedelta(days=365 * 1)  # Start 1 year ago
+start_date = datetime.now() - timedelta(days=365 * 3)  # Start 1 year ago
 
 for i in range(1000):  # Number of commits
     commit_date = start_date + timedelta(days=randint(0, 365))  # Random past date within 1 year
