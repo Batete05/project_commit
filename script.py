@@ -1,12 +1,20 @@
 import os
-import time
 from datetime import datetime, timedelta
-from random import randint
 
-start_date = datetime.now() - timedelta(days=365 * 3)  # Start 1 year ago
+# Set the start date to January 1st of last year
+start_year = datetime.now().year - 1  # Change if you want a different year
+start_date = datetime(start_year, 1, 1)
 
-for i in range(1000):  # Number of commits
-    commit_date = start_date + timedelta(days=randint(0, 365))  # Random past date within 1 year
+# Number of days in the year
+days_in_year = 365 if start_year % 4 != 0 else 366  # Account for leap years
+
+# Number of commits to distribute
+num_commits = 1000  # Adjust as needed
+
+# Spread commits evenly across the year
+for i in range(num_commits):
+    day_offset = i % days_in_year  # Cycle through days in the year
+    commit_date = start_date + timedelta(days=day_offset)
     commit_date_str = commit_date.strftime("%Y-%m-%d %H:%M:%S")
 
     with open("hello.txt", "a") as f:
